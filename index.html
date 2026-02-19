@@ -21,7 +21,7 @@
                     },
                     colors: {
                         navy: '#0f172a',
-                        primary: '#2563eb', // Neutrales Business-Blau (statt markenspezifisch)
+                        primary: '#2563eb', // Neutrales Business-Blau
                         cyan: '#0ea5e9',
                     }
                 }
@@ -66,7 +66,7 @@
             Smartphone, BookOpen, GraduationCap, ExternalLink, Rocket, RefreshCw, Monitor, FileText, ShieldCheck
         } from "https://esm.sh/lucide-react@0.292.0";
 
-        // --- Datele din CV (Rămân neschimbate - istoricul e bun așa cum e) ---
+        // --- Datele din CV ---
         const careerData = [
           {
             id: 'mcdonalds',
@@ -179,11 +179,56 @@
           }
         ];
 
+        // --- Datele pentru Certificate ---
+        const certificateFiles = [
+          {
+            title: "Recomandare McDonald's",
+            subtitle: "Arbeitszeugnis",
+            desc: "Krainz Systemgastronomie GmbH",
+            file: "Mc Arbeitszeugniss.pdf",
+            icon: <FileText className="w-6 h-6" />
+          },
+          {
+            title: "Certificate McDonald's",
+            subtitle: "Ausbildungen",
+            desc: "Shift Management, QA-Technik, Barista",
+            file: "MC Ausbildungen.pdf",
+            icon: <Award className="w-6 h-6" />
+          },
+          {
+            title: "Recomandare Thalia",
+            subtitle: "Praktikumszeugnis",
+            desc: "Thalia Universitätsbuchhandlung",
+            file: "Thalia Arbeitszeugniss.pdf",
+            icon: <FileText className="w-6 h-6" />
+          },
+          {
+            title: "Certificat Steinbeis",
+            subtitle: "Teilnahmebescheinigung",
+            desc: "Steinbeis Business Academy (Comunicare)",
+            file: "SBA zeugniss.pdf",
+            icon: <Award className="w-6 h-6" />
+          },
+          {
+            title: "Adeverință Barmer GEK",
+            subtitle: "Praktikumsbescheinigung",
+            desc: "Stagiu în asigurări sociale",
+            file: "BG Arbeitszeugniss.pdf",
+            icon: <Briefcase className="w-6 h-6" />
+          },
+          {
+            title: "Curriculum Vitae",
+            subtitle: "CV Complet",
+            desc: "Format tradițional PDF",
+            file: "Baptiste_Lotode_CV.pdf",
+            icon: <User className="w-6 h-6" />
+          }
+        ];
+
         const Portfolio = () => {
           const [scrolled, setScrolled] = useState(false);
           const [activeJob, setActiveJob] = useState(careerData[0]);
 
-          // Efect de scroll pentru Navigație
           useEffect(() => {
             const handleScroll = () => {
               setScrolled(window.scrollY > 50);
@@ -202,16 +247,16 @@
           return (
             <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-blue-200">
               
-              {/* Navigation */}
+              {/* Navigation - Adăugat 'Certificate' */}
               <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/95 backdrop-blur-sm shadow-xl py-3' : 'bg-transparent py-5'}`}>
                 <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                   <div className={`font-bold text-xl tracking-wider uppercase border-2 px-2 py-1 transition-colors ${scrolled ? 'text-white border-white' : 'text-slate-900 border-slate-900'}`}>
                     B.Lotodé
                   </div>
                   
-                  <div className="hidden md:flex space-x-8 text-sm font-bold tracking-widest uppercase">
-                    {['Profil', 'Carieră', 'Realizări', 'Metodologie', 'Abilități & Tech', 'Provocări', 'Contact'].map((item, idx) => {
-                      const ids = ['hero', 'career', 'achievements', 'method', 'skills', 'challenges', 'contact'];
+                  <div className="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm font-bold tracking-widest uppercase">
+                    {['Profil', 'Carieră', 'Realizări', 'ADN', 'Abilități', 'Certificate', 'Provocări', 'Contact'].map((item, idx) => {
+                      const ids = ['hero', 'career', 'achievements', 'method', 'skills', 'certificates', 'challenges', 'contact'];
                       return (
                         <button
                           key={item}
@@ -226,28 +271,24 @@
                 </div>
               </nav>
 
-              {/* 1. Hero Section - MODIFIED FOR UNIVERSAL APPEAL */}
+              {/* 1. Hero Section */}
               <section id="hero" className="relative min-h-screen flex items-center justify-center bg-white pt-20 overflow-hidden">
-                {/* Abstract Background Shapes */}
                 <div className="absolute top-0 right-0 w-2/3 h-full bg-slate-50 skew-x-12 transform origin-top-right z-0"></div>
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50 z-0"></div>
                 
                 <div className="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                   <div>
                     <div className="inline-flex items-center space-x-2 bg-slate-900 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 shadow-lg">
-                      {/* GENERALIZED TITLE */}
                       <Target size={14} className="text-blue-400" /> <span>Retail & Operations Professional</span>
                     </div>
                     <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight">
                       Retail & Operations <br />
-                      {/* CHANGED FROM "Vânzări" TO "Management" TO FIT EVERYTHING */}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-600">Management.</span>
                     </h1>
                     <h2 className="text-xl text-slate-500 font-medium mb-8">
                       Planificarea strategică întâlnește rigoarea operațională. <br/>
                       Competența interculturală întâlnește mentalitatea Tech-Native.
                     </h2>
-                    {/* UNIVERSAL QUOTE */}
                     <p className="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed border-l-4 border-blue-500 pl-4">
                       "Performanță prin Oameni și Procese. Fie că e vorba de Fashion, Food sau Retail General."
                     </p>
@@ -268,13 +309,11 @@
                     </div>
                   </div>
 
-                  {/* Abstract Profile Visualization */}
                   <div className="relative hidden md:block">
                     <div className="relative w-full aspect-square max-w-md mx-auto">
                        <div className="absolute inset-0 bg-gradient-to-tr from-slate-200 to-slate-100 rounded-2xl rotate-3"></div>
                        <div className="absolute inset-0 bg-white rounded-2xl border-2 border-slate-900 -rotate-3 flex flex-col items-center justify-center p-8 shadow-2xl">
                           
-                          {/* Profilbild Bereich */}
                           <div className="w-48 h-48 mb-6 rounded-full overflow-hidden border-4 border-slate-100 shadow-md relative bg-slate-200">
                              <img 
                                 src="profile.jpg" 
@@ -285,7 +324,6 @@
                           </div>
 
                           <h3 className="text-2xl font-bold text-slate-900">Baptiste Lotodé</h3>
-                          {/* CHANGED FROM "Vânzătorul Universal" TO OPS PROFESSIONAL */}
                           <p className="text-slate-500 uppercase tracking-widest text-sm mb-6">Retail & Ops Professional</p>
                           
                           <div className="w-full space-y-3">
@@ -308,7 +346,7 @@
                 </div>
               </section>
 
-              {/* 2. Interactive Career Section - The Tech-Native Highlight */}
+              {/* 2. Interactive Career Section */}
               <section id="career" className="py-24 bg-slate-900 text-white">
                 <div className="max-w-6xl mx-auto px-6">
                   <div className="text-center mb-16">
@@ -317,7 +355,6 @@
                   </div>
 
                   <div className="grid lg:grid-cols-12 gap-8 h-[600px]">
-                    {/* Left Column: Job List (Scrollable) */}
                     <div className="lg:col-span-4 space-y-4 overflow-y-auto pr-2 scrollbar-hide h-full">
                       {careerData.map((job) => (
                         <button
@@ -340,11 +377,9 @@
                       ))}
                     </div>
 
-                    {/* Right Column: Detail View (The "Screen") */}
                     <div className="lg:col-span-8 h-full">
                       <div className="bg-slate-800 rounded-2xl p-0 border border-slate-700 h-full relative overflow-hidden shadow-2xl flex flex-col">
                         
-                        {/* Image Banner */}
                         <div className="h-48 w-full relative shrink-0 group">
                            {activeJob.image && (
                             <img 
@@ -355,7 +390,6 @@
                            )}
                            <div className="absolute inset-0 bg-gradient-to-t from-slate-800 via-transparent to-transparent"></div>
                            
-                           {/* Link Button */}
                            <a 
                              href={activeJob.link} 
                              target="_blank" 
@@ -366,7 +400,6 @@
                            </a>
                         </div>
 
-                        {/* Content Area */}
                         <div className="p-8 relative z-10 flex-grow overflow-y-auto">
                           
                           <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 border-b border-slate-600 pb-6">
@@ -378,7 +411,6 @@
                                 <Calendar size={14} className="mr-1" /> {activeJob.period}
                               </div>
                             </div>
-                            {/* Visual Badge */}
                             <div className="mt-4 md:mt-0 px-4 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-mono border border-blue-500/50 whitespace-nowrap">
                               {activeJob.id === 'mcdonalds' ? 'Leadership' : activeJob.id === 'o2' ? 'Vânzări Tech' : 'Experiență'}
                             </div>
@@ -426,7 +458,7 @@
                 </div>
               </section>
 
-              {/* NEW SECTION: Key Achievements */}
+              {/* 3. Key Achievements */}
               <section id="achievements" className="py-24 bg-white relative">
                 <div className="max-w-6xl mx-auto px-6">
                   <div className="text-center mb-16">
@@ -438,7 +470,6 @@
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
-                    {/* Card 1: Digitale Prozessoptimierung */}
                     <div className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600">
                         <Monitor size={24} />
@@ -460,7 +491,6 @@
                       </div>
                     </div>
 
-                    {/* Card 2: Change Management */}
                     <div className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
                       <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6 text-orange-600">
                         <RefreshCw size={24} />
@@ -482,7 +512,6 @@
                       </div>
                     </div>
 
-                    {/* Card 3: Educational Leadership */}
                     <div className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-green-600">
                         <GraduationCap size={24} />
@@ -504,7 +533,6 @@
                       </div>
                     </div>
 
-                    {/* Card 4: Innovationsdrang */}
                     <div className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-purple-600">
                         <Rocket size={24} />
@@ -527,13 +555,12 @@
                 </div>
               </section>
 
-              {/* 3. Methodology - Core Competencies */}
-              <section id="method" className="py-24 bg-slate-50">
+              {/* 4. Methodology - Core Competencies */}
+              <section id="method" className="py-24 bg-slate-50 border-t border-slate-200">
                 <div className="max-w-6xl mx-auto px-6">
                   <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">ADN-ul Meu</h2>
                     <p className="text-slate-600 max-w-2xl mx-auto">
-                      {/* GENERALIZED POSITION TITLE */}
                       De ce sunt candidatul ideal pentru rolul de Manager în Retail & Operațiuni.
                     </p>
                   </div>
@@ -569,7 +596,6 @@
                       </p>
                     </div>
 
-                    {/* NEW CARD: HACCP & STANDARDS */}
                     <div className="bg-white p-8 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 group">
                       <div className="bg-blue-50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
                         <ShieldCheck className="w-8 h-8 text-blue-600 group-hover:text-white" />
@@ -583,12 +609,11 @@
                 </div>
               </section>
 
-              {/* 4. Skills & Languages Matrix */}
+              {/* 5. Skills & Languages Matrix */}
               <section id="skills" className="py-24 bg-white border-y border-slate-100">
                 <div className="max-w-5xl mx-auto px-6">
                   <div className="grid md:grid-cols-2 gap-16">
                     
-                    {/* Languages */}
                     <div>
                       <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
                         <Globe className="mr-3 text-blue-600" /> Matricea Lingvistică
@@ -614,7 +639,6 @@
                       </div>
                     </div>
 
-                    {/* Tech Stack */}
                     <div>
                       <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
                         <Cpu className="mr-3 text-blue-600" /> Tech Stack Digital
@@ -643,9 +667,47 @@
                 </div>
               </section>
 
-              {/* 5. Challenge Hub (Minigames Placeholder) - STYLED LIKE GAME.HTML */}
+              {/* 6. NEU: ZEUGNISSE & ZERTIFIKATE SEKTION */}
+              <section id="certificates" className="py-24 bg-slate-50 border-b border-slate-200">
+                <div className="max-w-6xl mx-auto px-6">
+                  <div className="text-center mb-16">
+                    <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Transparență & Validare</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Referințe & Certificate</h2>
+                    <p className="text-slate-600 max-w-2xl mx-auto">
+                      Aici puteți consulta și descărca direct scrisorile mele de recomandare (Arbeitszeugnisse) și certificatele de formare.
+                    </p>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {certificateFiles.map((cert, index) => (
+                      <a 
+                        key={index}
+                        href={cert.file} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="bg-white p-6 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition-all duration-300 flex items-start group"
+                      >
+                        <div className="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center mr-5 group-hover:bg-blue-600 transition-colors shrink-0">
+                          <div className="text-blue-600 group-hover:text-white transition-colors">
+                            {cert.icon}
+                          </div>
+                        </div>
+                        <div className="flex-grow pr-2">
+                          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">{cert.subtitle}</p>
+                          <h4 className="font-bold text-slate-900 text-sm mb-1 leading-tight">{cert.title}</h4>
+                          <p className="text-xs text-slate-500 line-clamp-2">{cert.desc}</p>
+                        </div>
+                        <div className="mt-1 shrink-0">
+                          <Download className="w-5 h-5 text-slate-300 group-hover:text-blue-600 transition-colors" />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* 7. Challenge Hub (Minigames Placeholder) */}
               <section id="challenges" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#0f172a' }}>
-                {/* Tech Grid Background similar to game.html */}
                 <div className="absolute inset-0 opacity-20 pointer-events-none" 
                      style={{ 
                          backgroundImage: 'linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px)',
@@ -664,7 +726,6 @@
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-8">
-                    {/* OPS Game Card - Styled like game.html */}
                     <div className="group relative p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2"
                          style={{ 
                              background: 'rgba(15, 23, 42, 0.6)', 
@@ -672,7 +733,6 @@
                              borderColor: 'rgba(14, 165, 233, 0.1)',
                              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                          }}>
-                      {/* Hover Glow Effect */}
                       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                            style={{ boxShadow: '0 0 40px rgba(37, 99, 235, 0.2)' }}></div>
 
@@ -698,7 +758,6 @@
                       </a>
                     </div>
 
-                    {/* KPI Game Card - Consistent Style */}
                     <div className="group relative p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2"
                          style={{ 
                              background: 'rgba(15, 23, 42, 0.6)', 
@@ -736,7 +795,7 @@
                 </div>
               </section>
 
-              {/* 6. Contact Section - No LinkedIn, Direct Business */}
+              {/* 8. Contact Section */}
               <section id="contact" className="py-24 bg-white text-center">
                 <div className="max-w-4xl mx-auto px-6">
                   <h2 className="text-4xl font-bold text-slate-900 mb-4">Pregătit pentru început.</h2>
